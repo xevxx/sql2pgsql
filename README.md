@@ -22,12 +22,13 @@ This script is designed to transfer data from a SQL Server database to a Postgre
 1. Install the required Python packages:
 ```bash
 pip install SQLAlchemy psycopg2 geoalchemy2
+```
 3. Modify the script according to your database configurations and column mappings.
 4. Run the script with the following command:
 
 ```bash
 python3 transfer_data_script.py --ms-server <SQL_SERVER_HOSTNAME> --ms-database <SQL_SERVER_DATABASE_NAME> --ms-username <SQL_SERVER_USERNAME> --ms-password <SQL_SERVER_PASSWORD> --ms-table <SQL_SERVER_TABLE_NAME> --pg-host <POSTGRESQL_HOSTNAME> --pg-port <POSTGRESQL_PORT> --pg-database <POSTGRESQL_DATABASE_NAME> --pg-username <POSTGRESQL_USERNAME> --pg-password <POSTGRESQL_PASSWORD> --pg-table <POSTGRESQL_TABLE_NAME>
-
+```
 
 
 SqlAlchemy seems to read geometry (not supported) columns type as null, it was added into the data types declation as NULL: GEOMETRY, if your data has other unsupported data types this prob wont work correctly
@@ -52,14 +53,14 @@ pg_port = "your_pg_port"
 pg_database = "your_pg_database"
 pg_username = "your_pg_username"
 pg_password = "your_pg_password"
-
+```
 1. Ensure that the transfer_data.py script is present in the same directory as this script.
 2. Create a file named table_names.txt and populate it with the names of the tables you want to transfer data for, each on a separate line.
 3. Run the script with the following command:
 
 ```bash
 python3 run_imports.py
-
+```
 ## Script Details
 The script reads table names from table_names.txt and executes transfer_data.py for each table, transferring data from MS SQL to PostgreSQL.
 Each transfer operation is executed as a subprocess, capturing stdout and stderr to provide feedback on the process.
